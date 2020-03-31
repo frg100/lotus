@@ -22,7 +22,7 @@ final class CameraViewController: UIViewController {
         view.addSubview(previewView)
         print("viewDidLoad")
         print(cameraController)
-        cameraController.prepare {(error) in
+        self.cameraController.prepare {(error) in
             if let error = error {
                 print("ERR in <prepare>")
                 print(error)
@@ -33,9 +33,6 @@ final class CameraViewController: UIViewController {
     }
     
     func captureImage(_ sender: Any) {
-        print("CameraViewController captureImage")
-        print(cameraController)
-        print(self.cameraController)
         self.cameraController.captureImage {(image, error) in
             guard let image = image else {
                 print(error ?? "Image capture error")

@@ -68,19 +68,14 @@ class CameraController: NSObject{
             if captureSession.canAddOutput(self.photoOutput!) {
                 captureSession.addOutput(self.photoOutput!) }
          
-            print("Running capture session")
             captureSession.startRunning()
         }
            
         DispatchQueue(label: "prepare").async {
             do {
-                print("Creating capture session")
                 createCaptureSession()
-                print("Configuring capture devices")
                 try configureCaptureDevices()
-                print("Configuring device inputs")
                 try configureDeviceInputs()
-                print("Configuring photo output")
                 try configurePhotoOutput()
                 
             }
@@ -100,9 +95,6 @@ class CameraController: NSObject{
     }
     
     func displayPreview(on view: UIView) throws {
-        print("Displaying preview!")
-        print(self)
-        print(self.captureSession)
         guard let captureSession = self.captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
             
         self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -114,8 +106,6 @@ class CameraController: NSObject{
     }
     
     func captureImage(completion: @escaping (UIImage?, Error?) -> Void) {
-        print("CameraController captureImage")
-        print(self)
         guard let captureSession = captureSession, captureSession.isRunning else { completion(nil, CameraControllerError.captureSessionIsMissing); return }
      
         print("Capturing photo")

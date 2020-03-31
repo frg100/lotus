@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
-            cameraViewController
+            self.cameraViewController
                 .edgesIgnoringSafeArea(.top)
             Text("+")
                 .font(.largeTitle)
@@ -21,7 +21,7 @@ struct ContentView: View {
                 .offset(y: -UIScreen.main.bounds.height/2)
             Button(action: {
                 print("Button")
-                print(self.cameraViewController)
+                print(self.cameraViewController.cameraController)
                 self.cameraViewController.captureImage(self)
             }) {
                Image(systemName: "camera")
